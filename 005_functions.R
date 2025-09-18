@@ -49,9 +49,8 @@ get_meteofrance_urls <- function() {
 a__f_dowload_list_file <- function(url_list) {
   for (url in url_list) {
     # Extract the file name from the URL
-    split_the_url <- strsplit(url, "/")
-    matrix_the_url <- matrix(unlist(split_the_url), ncol = 9, byrow = TRUE)
-    file_name <- matrix_the_url[1, 9]
+    split_the_url <- unlist(strsplit(url, "/"))
+    file_name <- tail(split_the_url, 1)  # always last element
     
     # Full local path
     dest_file <- file.path(K_DIR_EXT_DATA, file_name)
